@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>DojoQuery</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        window.onload = function () {
+            function $Dojo(element) {
+                this.id = document.getElementById(element);
+                
+                this.click = function(callback) {
+                    this.id.addEventListener("click", callback);
+                    return this;
+                };
+
+                this.hover = function(hoverOver, hoverOut) {
+                    this.id.addEventListener("mouseover", hoverOver);
+                    this.id.addEventListener("mouseout", hoverOut);
+
+                    return this;
+                };
+            }
+
+            var ele = new $Dojo("click");
+
+            ele.click(function () {
+                document.getElementById("text").innerHTML = "You clicked on the button!";
+            });
+
+            var ele2 = new $Dojo("hover");
+
+            var hoverOver = function() {
+                document.getElementById("texttwo").innerHTML = "Mouse is over the button";
+            }
+
+            var hoverOut = function() {
+                document.getElementById("texttwo").innerHTML = "Mouse is not on the button";
+            }
+
+            ele2.hover(hoverOver, hoverOut);
+        }
+
+        /*$(document).ready(function() {
+            $("#click").click(function() {
+                document.getElementById("text").innerHTML = "You clicked on the button!";
+            });
+            $("#hover").mouseover(function() {
+                document.getElementById("texttwo").innerHTML = "Mouse is over the button";
+            });
+            $("#hover").mouseout(function() {
+                document.getElementById("texttwo").innerHTML = "";
+            });
+        });*/
+    </script>
+</head>
+<body>
+    <button id = "click">Click Me</button>
+    <p id = "text"></p>
+    <button id = "hover">Hover over me</button>
+    <p id = "texttwo"></p>
+</body>
+</html>
